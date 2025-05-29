@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-05-29",
 	modules: ["shadcn-nuxt"],
+	plugins: ["./plugins/vue-data-ui.client.ts"],
 
 	nitro: {
 		experimental: {
@@ -12,6 +13,9 @@ export default defineNuxtConfig({
 		scheduledTasks: {
 			// Run `cms:update` task every minute
 			"0 0 * * *": ["fetchUpdateDatabase"],
+
+			// run every minute
+			"* * * * *": ["cronLog"],
 		},
 	},
 
