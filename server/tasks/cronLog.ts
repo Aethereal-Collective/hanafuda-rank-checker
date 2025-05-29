@@ -1,10 +1,10 @@
 export default defineTask({
 	meta: {
 		name: "cronLog",
-		description: "Run fetcha and database update task",
+		description: "Run cron logs",
 	},
 	run({ payload, context }) {
-		console.log("Running Fetch and Database Update Task");
+		console.log("Running Cron Logs");
 
 		return { result: "Success" };
 	},
