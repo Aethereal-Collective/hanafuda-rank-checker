@@ -13,9 +13,6 @@ export default defineNuxtConfig({
 		scheduledTasks: {
 			// Run `cms:update` task every minute
 			"0 0 * * *": ["fetchUpdateDatabase"],
-
-			// run every minute
-			"* * * * *": ["cronLog"],
 		},
 	},
 
