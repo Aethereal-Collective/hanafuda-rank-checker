@@ -8,7 +8,7 @@
 				</div>
 
 				<div class="search w-[90%] md:w-[50%] mx-auto mt-20">
-					<span class="text-gray-500 text-sm">Last Updated {{ dayjs.utc(dataLastUpdate?.lastUpdated).format("MMM D, YYYY HH:mm") }}</span>
+					<span class="text-gray-500 text-sm">Last Updated {{ dayjs.utc(dataLastUpdate?.lastUpdated).format("MMM D, YYYY HH:mm") }} UTC</span>
 
 					<div class="search-bar flex w-full items-center gap-1.5">
 						<Input v-model="searchQuery" placeholder="Search Username eg: Fanreza" />
@@ -81,6 +81,7 @@ const rankedUserError = ref<ApiError | null>(null);
 const getRankedUsers = async () => {
 	isLoadingGetRankedUsers.value = true;
 	rankedUserError.value = null;
+	rankedUserData.value = null;
 
 	try {
 		const res = await $fetch(`/api/rank/${searchQuery.value}`);
