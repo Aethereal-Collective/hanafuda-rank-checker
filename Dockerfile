@@ -1,26 +1,30 @@
-# Use a large Node.js base image to build the application and name it "build"
-FROM node:18-alpine as build
+# Step 1: Build stage
+FROM node:20-alpine AS builder
 
+# Set working directory
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files into the working directory before copying the rest of the files
-# This will cache the dependencies and speed up subsequent builds if the dependencies don't change
-COPY package*.json /app
-
-# You might want to use npm or pnpm instead
+# Copy package files and install dependencies
+COPY package*.json ./
 RUN npm install
 
-COPY . /app
-
+# Copy the rest of the app and build
+COPY . .
 RUN npm run build
 
-# Instead of using a node:18-alpine image, we are using a distroless image. These are provided by google: https://github.com/GoogleContainerTools/distroless
-FROM node:18-alpine as prod
+# Step 2: Production stage
+FROM node:20-alpine AS runner
 
+# Set working directory
 WORKDIR /app
 
-# Copy the built application from the "build" image into the "prod" image
-COPY --from=build /app/.output /app/.output
+# Copy only the built output and needed files
+COPY --from=builder /app/.output .output
+COPY --from=builder /app/node_modules node_modules
+COPY --from=builder /app/package.json ./
 
-# Since this image only contains node.js, we do not need to specify the node command and simply pass the path to the index.mjs file!
-CMD ["/app/.output/server/index.mjs"]
+# Expose port (default for Nuxt)
+EXPOSE 3000
+
+# Start Nuxt in production mode
+CMD ["node", ".output/server/index.mjs"]
