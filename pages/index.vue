@@ -27,8 +27,10 @@
 			</div>
 		</div>
 
-		<div class="w-[80%] mx-auto flex items-center gap-20 justify-center mt-20">
+		<div class="w-[80%] mx-auto flex flex-wrap 2xl:flex-nowrap items-center gap-20 justify-center mt-20">
 			<PagesTopReffTable :value="dataTopReff" />
+
+			<PagesTopDepositTable :value="dataTopDeposit" />
 
 			<PagesTopReffPointsTable :value="dataTopReffPoints" />
 		</div>
@@ -43,6 +45,7 @@
 import { formatCompact } from "~/utils/formatCompact";
 
 const { data: dataTopReff } = useFetch("/api/top-reff");
+const { data: dataTopDeposit } = useFetch("/api/top-deposit");
 const { data: dataTopReffPoints } = useFetch("/api/top-reff-points");
 
 const { data: dataTotalPoints } = useFetch("/api/total-points");

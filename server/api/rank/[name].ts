@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
         SELECT
           l.id,
           l.depositCount,
+		  l.rankDeposit,
           l.totalPoint,
           l.lastDepositedAt,
           l.rank,

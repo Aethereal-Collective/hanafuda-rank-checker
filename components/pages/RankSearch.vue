@@ -22,6 +22,7 @@
 			<CardHeader>
 				<CardTitle>{{ rankedUserData.userName }}</CardTitle>
 				<CardDescription>Rank by Point: {{ rankedUserData.rank }}</CardDescription>
+				<CardDescription>Rank by Deposit: {{ rankedUserData.rankDeposit }}</CardDescription>
 			</CardHeader>
 			<CardContent class="space-y-2">
 				<div class="flex items-center space-x-4">

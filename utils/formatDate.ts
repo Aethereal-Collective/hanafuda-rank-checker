@@ -16,3 +16,12 @@ export const formatDate = (date: Date | string | null | undefined): string => {
 	// Convert to dayjs object, handling both Date and string inputs
 	return dayjs.utc(date).format("MMM D, YYYY HH:mm");
 };
+
+export const formatTimestamp = (timestamp: string | null | undefined): string => {
+	if (!timestamp) {
+		return "";
+	}
+
+	// Convert to dayjs object, handling both number and string inputs
+	return dayjs.utc(parseInt(timestamp)).format("MMM D, YYYY HH:mm");
+};

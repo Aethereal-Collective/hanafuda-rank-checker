@@ -13,6 +13,7 @@ export interface LeaderboardInviter {
 export interface LeaderboardResponse {
 	id: string;
 	depositCount: string;
+	rankDeposit: number;
 	totalPoint: number;
 	lastDepositedAt: string;
 	rank: number;
